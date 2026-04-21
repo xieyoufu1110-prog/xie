@@ -19,7 +19,6 @@
             justify-content: center;
             overflow: hidden;
             background: #0a0a12;
-            /* 背景缓慢变色动画 */
             animation: bgFlow 15s ease infinite alternate;
             font-family: sans-serif;
         }
@@ -60,7 +59,6 @@
             justify-content: center;
             overflow: hidden;
             margin-bottom: 30px;
-            /* 白色发光效果 */
             box-shadow: 0 0 15px rgba(255,255,255,0.6),
                         0 0 30px rgba(255,255,255,0.3),
                         0 0 45px rgba(255,255,255,0.15);
@@ -107,12 +105,11 @@
     <div class="tip" id="tip"></div>
 
     <script>
-        // 视频列表
+        // 修正为你仓库里的实际文件名
         const videoList = [
-            "7点.mp4",
-            "8点.mp4",
-            "9点.mp4",
-            "10点.mp4"
+            "7.mp4",
+            "8.mp4",
+            "78.mp4"
         ];
         let index = 0;
         const video = document.getElementById("mainVideo");
@@ -145,13 +142,11 @@
             snow.style.fontSize = (Math.random() * 10 + 8) + "px";
             document.body.appendChild(snow);
 
-            // 动画结束后移除
             setTimeout(() => {
                 snow.remove();
             }, 10000);
         }
 
-        // 定时生成雪花
         setInterval(createSnowflake, 300);
     </script>
 </body>
