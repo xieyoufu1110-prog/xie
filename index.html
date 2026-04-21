@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>猎奇の东西</title>
+    <title>视频播放器</title>
     <style>
         * {
             margin: 0;
@@ -29,6 +29,7 @@
             100% { background-color: #0a0a1a; }
         }
 
+        /* 雪花粒子 */
         .snowflake {
             position: fixed;
             top: -10px;
@@ -46,6 +47,7 @@
             }
         }
 
+        /* 视频容器 + 发光白框 */
         .video-wrap {
             width: 320px;
             height: 180px;
@@ -68,6 +70,7 @@
             object-fit: cover;
         }
 
+        /* 按钮 */
         .next-btn {
             padding: 12px 35px;
             font-size: 16px;
@@ -83,6 +86,7 @@
             opacity: 0.8;
         }
 
+        /* 切换提示 */
         .tip {
             color: #00ff88;
             margin-top: 15px;
@@ -97,36 +101,38 @@
         <video id="mainVideo" controls></video>
     </div>
 
-    <button class="next-btn" onclick="nextVideo()">换一个～</button>
+    <button class="next-btn" onclick="nextVideo()">换一个</button>
     <div class="tip" id="tip"></div>
 
     <script>
-        // 这里用你仓库的绝对地址，浏览器一定能找到
-        const repoBase = "https://xieyoufu1110-prog.github.io/";
+        // 修正为你仓库里的实际文件名
         const videoList = [
-            repoBase + "7.mp4",
-            repoBase + "8.mp4",
-            repoBase + "78.mp4"
+            "7.mp4",
+            "8.mp4",
+            "78.mp4"
         ];
         let index = 0;
         const video = document.getElementById("mainVideo");
         const tip = document.getElementById("tip");
 
+        // 初始加载第一个视频
         video.src = videoList[index];
-        tip.textContent = "当前：" + videoList[index].split('/').pop();
+        tip.textContent = "当前：" + videoList[index];
 
+        // 切换视频
         function nextVideo() {
             index = (index + 1) % videoList.length;
             video.src = videoList[index];
             video.load();
             video.play();
 
-            tip.textContent = "✅ 视频切换成功：" + videoList[index].split('/').pop();
+            tip.textContent = "✅ 视频切换成功：" + videoList[index];
             setTimeout(() => {
                 tip.textContent = "";
             }, 3000);
         }
 
+        // 生成雪花粒子
         function createSnowflake() {
             const snow = document.createElement("div");
             snow.className = "snowflake";
