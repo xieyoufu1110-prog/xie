@@ -1,266 +1,147 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>动漫电视 · WebCat</title>
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  -webkit-user-select: none;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-}
-html, body {
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  background: #0b1227;
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'PingFang SC', sans-serif;
-  color: #fff;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>猎奇の东西</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-#snow {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-}
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: #0a0a12;
+            animation: bgFlow 15s ease infinite alternate;
+            font-family: sans-serif;
+        }
 
-.container {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  height: 100%;
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
+        @keyframes bgFlow {
+            0% { background-color: #0a0a12; }
+            50% { background-color: #151525; }
+            100% { background-color: #0a0a1a; }
+        }
 
-.search-box {
-  display: flex;
-  gap: 10px;
-  padding: 12px 14px;
-  background: rgba(255,255,255,0.12);
-  border-radius: 20px;
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255,255,255,0.2);
-}
-#keyword {
-  flex: 1;
-  background: transparent;
-  border: none;
-  outline: none;
-  color: #fff;
-  font-size: 16px;
-  padding: 6px 8px;
-}
-#keyword::placeholder {
-  color: rgba(255,255,255,0.5);
-}
-#searchBtn {
-  padding: 8px 16px;
-  background: rgba(251,114,153,0.85);
-  border: none;
-  border-radius: 16px;
-  color: #fff;
-  font-weight: 600;
-  font-size: 14px;
-  transition: all 0.2s ease;
-}
-#searchBtn:active {
-  transform: scale(0.95);
-}
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            color: #fff;
+            font-size: 10px;
+            opacity: 0.7;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
 
-.video-info {
-  padding: 10px 14px;
-  background: rgba(255,255,255,0.08);
-  border-radius: 16px;
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255,255,255,0.15);
-}
-.video-title {
-  font-size: 14px;
-  font-weight: 600;
-  color: #fff;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.video-up {
-  font-size: 12px;
-  color: #fb7299;
-}
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
 
-.player-wrap {
-  aspect-ratio: 16/9;
-  border-radius: 24px;
-  overflow: hidden;
-  background: rgba(0,0,0,0.3);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 2px solid rgba(255,255,255,0.15);
-  padding: 4px;
-}
-iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-  border-radius: 20px;
-}
+        .video-wrap {
+            width: 320px;
+            height: 180px;
+            border-radius: 12px;
+            border: 3px solid #ffffff;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 0 15px rgba(255,255,255,0.6),
+                        0 0 30px rgba(255,255,255,0.3),
+                        0 0 45px rgba(255,255,255,0.15);
+        }
 
-.list-wrap {
-  flex: 1;
-  overflow-y: auto;
-  padding-right: 6px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.video-item {
-  padding: 12px 14px;
-  background: rgba(255,255,255,0.07);
-  border-radius: 16px;
-  backdrop-filter: blur(16px) saturate(160%);
-  -webkit-backdrop-filter: blur(16px) saturate(160%);
-  border: 1px solid rgba(255,255,255,0.1);
-}
-.video-item:active {
-  transform: scale(0.98);
-  background: rgba(251,114,153,0.15);
-}
-.item-title {
-  font-size: 15px;
-  font-weight: 600;
-  color: #fff;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.item-up {
-  font-size: 12px;
-  color: rgba(255,255,255,0.5);
-}
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-.load-more {
-  text-align: center;
-  padding: 12px;
-  color: #fb7299;
-  font-size: 14px;
-  font-weight: 600;
-}
-</style>
+        .next-btn {
+            padding: 12px 35px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            background: #ffffff;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .next-btn:active {
+            opacity: 0.8;
+        }
+
+        .tip {
+            color: #00ff88;
+            margin-top: 15px;
+            font-size: 14px;
+            height: 20px;
+            text-align: center;
+        }
+    </style>
 </head>
-
 <body>
-<canvas id="snow"></canvas>
+    <div class="video-wrap">
+        <video id="mainVideo" controls></video>
+    </div>
 
-<div class="container">
-  <div class="search-box">
-    <input type="text" id="keyword" placeholder="搜动漫/电视剧/电影/综艺" value="动漫">
-    <button id="searchBtn">搜索</button>
-  </div>
+    <button class="next-btn" onclick="nextVideo()">换一个～</button>
+    <div class="tip" id="tip"></div>
 
-  <div class="video-info">
-    <div class="video-title" id="videoTitle">准备播放</div>
-    <div class="video-up" id="videoUp">UP主：-</div>
-  </div>
+    <script>
+        // 这里用你仓库的绝对地址，浏览器一定能找到
+        const repoBase = "https://xieyoufu1110-prog.github.io/";
+        const videoList = [
+            repoBase + "7.mp4",
+            repoBase + "8.mp4",
+            repoBase + "78.mp4"
+        ];
+        let index = 0;
+        const video = document.getElementById("mainVideo");
+        const tip = document.getElementById("tip");
 
-  <div class="player-wrap">
-    <iframe id="player" allowfullscreen></iframe>
-  </div>
+        video.src = videoList[index];
+        tip.textContent = "当前：" + videoList[index].split('/').pop();
 
-  <div class="list-wrap" id="videoList"></div>
-  <div class="load-more" onclick="loadMore()">加载更多</div>
-</div>
+        function nextVideo() {
+            index = (index + 1) % videoList.length;
+            video.src = videoList[index];
+            video.load();
+            video.play();
 
-<script>
-const canvas = document.getElementById('snow');
-const ctx = canvas.getContext('2d');
-let w, h, snowArr = [];
-function resize(){
-  w=canvas.width=window.innerWidth;
-  h=canvas.height=window.innerHeight;
-}
-window.addEventListener('resize',resize);
-resize();
-class Snow{
-  constructor(){
-    this.x=Math.random()*w;
-    this.y=Math.random()*h;
-    this.r=Math.random()*2+1;
-    this.speedY=Math.random()*1+0.5;
-    this.opacity=Math.random()*0.5+0.3;
-  }
-  draw(){
-    ctx.beginPath();
-    ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
-    ctx.fillStyle=`rgba(255,255,255,${this.opacity})`;
-    ctx.fill();
-  }
-  update(){
-    this.y+=this.speedY;
-    if(this.y>h)this.y=0;
-  }
-}
-for(let i=0;i<120;i++)snowArr.push(new Snow());
-function loop(){
-  ctx.clearRect(0,0,w,h);
-  snowArr.forEach(s=>{s.update();s.draw();});
-  requestAnimationFrame(loop);
-}
-loop();
+            tip.textContent = "✅ 视频切换成功：" + videoList[index].split('/').pop();
+            setTimeout(() => {
+                tip.textContent = "";
+            }, 3000);
+        }
 
-let page=1,kw="动漫",list=[];
-const player=document.getElementById('player');
-const listEl=document.getElementById('videoList');
+        function createSnowflake() {
+            const snow = document.createElement("div");
+            snow.className = "snowflake";
+            snow.innerHTML = "❄";
+            snow.style.left = Math.random() * 100 + "vw";
+            snow.style.animationDuration = (Math.random() * 5 + 5) + "s";
+            snow.style.fontSize = (Math.random() * 10 + 8) + "px";
+            document.body.appendChild(snow);
 
-async function search(p=1){
-  let url=`https://api.bilibili.com/x/web-interface/search/all/v2?keyword=${encodeURIComponent(kw)}&page=${p}&page_size=20`;
-  let r=await fetch(url);
-  let d=await r.json();
-  return d.data.result.find(i=>i.result_type==='video')?.data||[];
-}
+            setTimeout(() => {
+                snow.remove();
+            }, 10000);
+        }
 
-function render(data){
-  data.forEach((v,i)=>{
-    let div=document.createElement('div');
-    div.className='video-item';
-    div.innerHTML=`<div class="item-title">${v.title.replace(/<[^>]+>/g,'')}</div><div class="item-up">${v.author}</div>`;
-    div.onclick=()=>{
-      player.src=`https://player.bilibili.com/player.html?bvid=${v.bvid}&page=1`;
-      document.getElementById('videoTitle').innerText=v.title.replace(/<[^>]+>/g,'');
-      document.getElementById('videoUp').innerText='UP：'+v.author;
-    };
-    listEl.appendChild(div);
-  });
-}
-
-async function go(){
-  kw=document.getElementById('keyword').value.trim();
-  page=1;
-  listEl.innerHTML='';
-  list=await search(1);
-  render(list);
-}
-
-async function loadMore(){
-  page++;
-  let more=await search(page);
-  render(more);
-}
-
-document.getElementById('searchBtn').onclick=go;
-document.getElementById('keyword').onkeydown=e=>{if(e.key==='Enter')go()};
-go();
-</script>
+        setInterval(createSnowflake, 300);
+    </script>
 </body>
 </html>
