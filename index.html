@@ -3,137 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>净封の小窝</title>
+<title>💕 表白墙</title>
 <style>
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "MiSans", "PingFang SC", sans-serif;
+  font-family: "PingFang SC", "MiSans", sans-serif;
   -webkit-tap-highlight-color: transparent;
 }
+
 body {
+  background: linear-gradient(135deg, #1a0a1f 0%, #2d1b33 30%, #3a2344 60%, #1a0a1f 100%);
+  color: #fff;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background: #000;
-  color: #fff;
 }
 
-/* 错误小丑遮罩 */
-.joker-wrap {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  z-index: 99999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.4s ease;
-}
-.joker-wrap.show {
-  opacity: 1;
-  visibility: visible;
-}
-.joker-emoji {
-  font-size: 180px;
-  transform: scale(0.3) rotate(-20deg);
-  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-.joker-wrap.show .joker-emoji {
-  transform: scale(1) rotate(0deg);
-}
-
-/* 注册弹窗 */
-.register-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.7);
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 30px;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
-}
-.register-modal.show {
-  opacity: 1;
-  visibility: visible;
-}
-.register-box {
-  background: rgba(20,21,42,0.9);
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 24px;
-  width: 100%;
-  max-width: 380px;
-  padding: 36px 28px 30px;
-  backdrop-filter: blur(20px);
-  transform: translateY(40px) scale(0.9);
-  transition: all 0.6s cubic-bezier(0.16,1,0.3,1);
-}
-.register-modal.show .register-box {
-  transform: translateY(0) scale(1);
-}
-.register-title {
-  font-size: 20px;
-  font-weight: 600;
-  text-align: center;
-  margin-bottom: 26px;
-  color: #fff;
-}
-.register-input {
-  width: 100%;
-  padding: 16px 20px;
-  background: rgba(255,255,255,0.07);
-  border: 1px solid rgba(255,255,255,0.35);
-  border-radius: 16px;
-  color: #fff;
-  font-size: 16px;
-  margin-bottom: 16px;
-  text-align: center;
-  outline: none;
-  transition: all 0.3s ease;
-}
-.register-input:focus {
-  border-color: rgba(255,255,255,0.85);
-  background: rgba(255,255,255,0.1);
-}
-.register-btn {
-  width: 100%;
-  padding: 16px;
-  background: rgba(255,255,255,0.14);
-  border: 1px solid rgba(255,255,255,0.5);
-  border-radius: 16px;
-  color: #fff;
-  font-size: 17px;
-  font-weight: 500;
-  margin-top: 10px;
-  outline: none;
-  transition: all 0.25s ease;
-}
-.register-btn:active {
-  background: rgba(255,255,255,0.28);
-  transform: scale(0.98);
-}
-.register-tip {
-  text-align: center;
-  font-size: 12px;
-  color: #aaa;
-  margin-top: 16px;
-  line-height: 1.4;
-}
-
-/* 雪花画布 */
 .snow {
   position: fixed;
   top: 0;
@@ -141,998 +28,643 @@ body {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 9999;
+  z-index: 10;
 }
 
-/* 登录页 */
-.login {
-  position: fixed;
-  top: 0;
-  left: 0;
+/* 登录卡片 */
+.wrapper {
+  position: relative;
+  z-index: 20;
   width: 100%;
   height: 100%;
-  background: radial-gradient(ellipse at top, #14152a, #000);
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  z-index: 999;
-  padding: 0 38px;
-  opacity: 1;
-  transition: opacity 0.5s ease;
-}
-.login.hide {
-  opacity: 0;
-  pointer-events: none;
+  padding: 0 24px;
 }
 
-/* 头像 */
-.login-avatar {
-  width: 160px;
-  height: 160px;
+.glass-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 150, 200, 0.3);
+  border-radius: 28px;
+  width: 100%;
+  max-width: 360px;
+  padding: 40px 28px;
+  box-shadow: 0 0 30px rgba(255, 100, 170, 0.15), inset 0 0 30px rgba(255, 150, 200, 0.05);
+}
+
+.card-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #ffb3d1;
+  text-align: center;
+  margin-bottom: 32px;
+  text-shadow: 0 0 10px rgba(255, 179, 209, 0.5);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  font-size: 20px;
+  font-weight: 600;
+  color: #ffb3d1;
+  margin-bottom: 8px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 150, 200, 0.3);
+  border-radius: 20px;
+  font-size: 16px;
+  color: #fff;
+  outline: none;
+}
+
+.form-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 18px;
+  background: linear-gradient(135deg, #ff6b9d, #d45087);
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 10px;
+  box-shadow: 0 8px 20px rgba(255, 107, 157, 0.3);
+  cursor: pointer;
+}
+
+.tip-text {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.tip-text span {
+  color: #ff80b0;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ========== 按你要求改的注册弹窗 ========== */
+#regModal {
+  position: fixed;
+  top: 5%; /* 上移，不挡死登录 */
+  left: 50%;
+  transform: translateX(-50%) scale(0.8);
+  width: 85%;
+  max-width: 320px; /* 缩小弹窗宽度 */
+  background: rgba(30, 20, 35, 0.98);
+  backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 150, 200, 0.4);
+  border-radius: 28px;
+  padding: 24px 20px;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* 打开动画 */
+#regModal.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) scale(1);
+}
+
+/* 注册成功消失动画 */
+#regModal.fade-out {
+  transform: translateX(-50%) scale(0.4);
+  opacity: 0;
+}
+
+#regModal .card-title {
+  font-size: 34px;
+  color: #ff6b9d;
+  margin-bottom: 16px;
+}
+
+.avatar-preview {
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid #fff;
-  margin-bottom: 50px;
-  box-shadow: 0 0 30px rgba(255,255,255,0.35), 0 0 70px rgba(255,255,255,0.2);
-  animation: avatarRotate 12s linear infinite, avatarGlow 3s infinite alternate, avatarBounce 6s ease-in-out infinite;
-}
-@keyframes avatarRotate {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-@keyframes avatarGlow {
-  from { box-shadow: 0 0 28px rgba(255,255,255,0.3), 0 0 50px rgba(255,255,255,0.12); }
-  to   { box-shadow: 0 0 45px rgba(255,255,255,0.55), 0 0 90px rgba(255,255,255,0.3); }
-}
-@keyframes avatarBounce {
-  0%,100%{ transform:translateY(0) rotate(0); }
-  50%{ transform:translateY(-6px) rotate(0); }
+  margin: 0 auto 12px;
+  display: block;
+  border: 2px solid rgba(255, 150, 200, 0.4);
 }
 
-/* 输入框 */
-.login-input {
-  width: 100%;
-  padding: 16px 20px;
-  background: rgba(255,255,255,0.07);
-  border: 1px solid rgba(255,255,255,0.35);
-  border-radius: 16px;
-  color: #fff;
-  font-size: 16px;
-  margin-bottom: 16px;
-  text-align: center;
-  outline: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 10px rgba(255,255,255,0.08);
-}
-.login-input:focus {
-  border-color: rgba(255,255,255,0.85);
-  box-shadow: 0 0 22px rgba(255,255,255,0.25);
-  background: rgba(255,255,255,0.1);
-}
-
-/* 登录按钮 */
-.login-btn {
-  width: 100%;
-  padding: 16px;
-  background: rgba(255,255,255,0.14);
-  border: 1px solid rgba(255,255,255,0.5);
-  border-radius: 16px;
-  color: #fff;
-  font-size: 17px;
-  font-weight: 500;
+/* 注册+取消双按钮 */
+.reg-buttons {
+  display: flex;
+  gap: 10px;
   margin-top: 10px;
-  outline: none;
-  transition: all 0.25s ease;
-  box-shadow: 0 0 12px rgba(255,255,255,0.12);
 }
-.login-btn:active {
-  background: rgba(255,255,255,0.28);
-  box-shadow: 0 0 30px rgba(255,255,255,0.35);
-  transform: scale(0.98);
+.btn-reg {
+  flex: 1;
+  padding: 14px;
+  border: none;
+  border-radius: 16px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.btn-confirm {
+  background: linear-gradient(135deg, #ff6b9d, #d45087);
+  color: #fff;
+}
+.btn-cancel {
+  background: rgba(255,255,255,0.1);
+  color: #ffb3d1;
 }
 
-/* 底部注册入口：没有账号？ + 去注册 */
-.login-row {
+/* 主表白墙 */
+.wall {
+  display: none;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 80px 20px 120px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.wall-title {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 700;
+  color: #ffb3d1;
+  margin-bottom: 30px;
+  text-shadow: 0 0 10px rgba(255, 179, 209, 0.5);
+}
+
+.post-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 150, 200, 0.25);
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.post-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255, 150, 200, 0.3);
+}
+
+.post-name {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffb3d1;
+}
+
+.post-content {
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 10px 0;
+}
+
+.post-img {
+  width: 100%;
+  max-height: 260px;
+  object-fit: cover;
+  border-radius: 16px;
+  margin: 8px 0;
+}
+
+.post-actions {
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+  color: #ffb3d1;
+}
+
+.fab {
+  position: fixed;
+  right: 24px;
+  bottom: 100px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff6b9d, #d45087);
+  color: #fff;
+  font-size: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  margin-top: 20px;
-}
-.login-row-text {
-  font-size: 14px;
-  color: #ccc;
-}
-/* iOS 液态玻璃小按钮 */
-.glass-btn {
-  padding: 6px 14px;
-  font-size: 14px;
-  font-weight: 500;
-  color: #fff;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 99px;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 
-    0 0 0 1px rgba(255,255,255,0.2),
-    0 8px 16px rgba(0,0,0,0.1),
-    0 0 20px rgba(255,255,255,0.2);
-  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(255, 107, 157, 0.4);
+  z-index: 40;
   cursor: pointer;
-  white-space: nowrap;
-}
-.glass-btn:hover {
-  background: rgba(255,255,255,0.15);
-  box-shadow: 
-    0 0 0 1px rgba(255,255,255,0.4),
-    0 8px 18px rgba(0,0,0,0.15),
-    0 0 28px rgba(255,255,255,0.35);
-  transform: translateY(-1px);
-}
-.glass-btn:active {
-  transform: scale(0.95);
-  background: rgba(255,255,255,0.2);
+  display: none;
 }
 
-/* 主界面 */
-.main {
+.overlay {
   position: fixed;
-  inset: 0;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 998;
   opacity: 0;
+  transition: opacity 0.3s ease;
   pointer-events: none;
-  transition: opacity 0.5s ease;
 }
-.main.show {
+.overlay.active {
   opacity: 1;
   pointer-events: auto;
 }
 
-.video-bg {
-  position: absolute;
+.popup {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%) scale(0.8);
+  width: 90%; max-width: 360px;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(30px);
+  border: 1px solid rgba(255,150,200,0.4);
+  border-radius: 28px;
+  padding: 30px;
+  z-index: 999;
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  pointer-events: none;
+}
+.popup.active {
+  transform: translate(-50%,-50%) scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.popup-title {
+  font-size: 22px;
+  color: #ffb3d1;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.popup-input {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.container {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  height: 100%;
-  padding: 60px 24px 20px;
-  overflow-y: auto;
-}
-.container::-webkit-scrollbar { width: 0; }
-
-/* 卡片 */
-.card {
-  background: rgba(0,0,0,0.4);
-  border: 1px solid rgba(255,255,255,0.18);
-  border-radius: 22px;
-  margin-bottom: 16px;
-  backdrop-filter: blur(14px);
-  overflow: hidden;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-}
-.card-title {
-  padding: 20px;
-  font-size: 17px;
-  font-weight: 600;
-  color: #fff;
-  cursor: pointer;
-  user-select: none;
-  transition: 0.25s;
-}
-.card-title:active {
-  background: rgba(255,255,255,0.09);
-}
-.card-items {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.5s cubic-bezier(0.16,1,0.3,1);
-}
-.card-items.show {
-  max-height: 10000px;
-}
-.card-item {
-  padding: 16px 22px;
-  color: #eee;
-  border-top: 1px solid rgba(255,255,255,0.08);
-  transition: padding 0.25s ease, background 0.25s ease;
-}
-.card-item:active {
-  background: rgba(255,255,255,0.12);
-  padding-left: 28px;
-}
-
-/* 工具输入框微光 */
-.tool-input {
-  width: 100%;
-  padding: 14px 18px;
-  background: rgba(255,255,255,0.09);
-  border: 1px solid rgba(255,255,255,0.28);
-  border-radius: 14px;
-  color: #fff;
-  margin-bottom: 12px;
-  outline: none;
-  transition: 0.25s;
-  box-shadow: 0 0 8px rgba(255,255,255,0.08);
-}
-.tool-input:focus {
-  border-color: #fff;
-  box-shadow: 0 0 18px rgba(255,255,255,0.22);
-}
-
-/* 工具按钮微光 */
-.tool-btn {
-  width: 100%;
-  padding: 14px;
-  background: rgba(255,255,255,0.12);
-  border: 1px solid rgba(255,255,255,0.32);
-  border-radius: 14px;
-  color: #fff;
-  cursor: pointer;
-  transition: 0.25s;
-  box-shadow: 0 0 8px rgba(255,255,255,0.08);
-}
-.tool-btn:active {
-  background: rgba(255,255,255,0.22);
-  box-shadow: 0 0 20px rgba(255,255,255,0.25);
-}
-
-.tool-result {
   padding: 16px;
-  background: rgba(255,255,255,0.06);
-  border-radius: 14px;
-  min-height: 60px;
-  font-size: 14px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,150,200,0.3);
+  border-radius: 16px;
   color: #fff;
-  margin-top: 10px;
-  line-height: 1.6;
-  white-space: pre-line;
-  word-break: break-all;
+  font-size: 16px;
+  margin-bottom: 12px;
+  resize: none;
 }
 
-.copy-btn {
-  margin-top: 8px;
-  padding: 10px;
-  background: rgba(255,255,255,0.15);
-  border: 1px solid rgba(255,255,255,0.3);
+.popup-btns {
+  display: flex; gap: 12px; margin-top: 10px;
+}
+
+.popup-btn {
+  flex:1; padding:16px; border-radius:16px; font-size:16px; font-weight:600; border:none; cursor: pointer;
+}
+
+.btn-send {
+  background: linear-gradient(135deg,#ff6b9d,#d45087); color:#fff;
+}
+.btn-close {
+  background: rgba(255,255,255,0.1); color:#ffb3d1;
+}
+
+.toast {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translate(-50%, -60px);
+  background: rgba(255,107,157,0.9);
+  color: #fff;
+  padding: 10px 24px;
   border-radius: 12px;
-  color: #fff;
-  cursor: pointer;
-  width: 100%;
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  z-index: 9999;
+  opacity: 0;
+  transition: all 0.4s ease;
+  pointer-events: none;
+  white-space: nowrap;
 }
-.copy-btn:active {
-  background: rgba(255,255,255,0.25);
+.toast.show {
+  transform: translate(-50%, 0);
+  opacity: 1;
 }
 
-.music-result {
-  max-height: 220px;
-  overflow-y: auto;
-}
-.music-item {
-  padding: 12px;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-  cursor: pointer;
-}
-.music-item:active {
-  background: rgba(255,255,255,0.09);
+.copyright {
+  position: fixed;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 14px;
+  color: rgba(255, 179, 209, 0.6);
+  z-index: 60;
 }
 </style>
 </head>
-
 <body>
 
-<!-- 密码错误小丑表情 -->
-<div class="joker-wrap" id="joker">
-  <div class="joker-emoji">🤡</div>
-</div>
-
-<!-- 注册弹窗 -->
-<div class="register-modal" id="regModal">
-  <div class="register-box">
-    <div class="register-title">注册新用户</div>
-    <input class="register-input" id="regUser" placeholder="用户名（英文/中文）" maxlength="16">
-    <input class="register-input" id="regPwd" placeholder="密码（仅数字）" maxlength="16" type="password">
-    <button class="register-btn" onclick="doRegister()">完成注册</button>
-    <div class="register-tip">用户名支持中英文<br>密码仅允许数字，注册后自动跳回登录</div>
-  </div>
-</div>
-
 <canvas class="snow" id="snow"></canvas>
+<div class="toast" id="toast"></div>
 
-<!-- 登录页 -->
-<div class="login" id="login">
-  <img src="好.png" class="login-avatar">
-  <input class="login-input" id="user" placeholder="666🥰" type="text">
-  <input class="login-input" id="pwd" placeholder="code？" type="password">
-  <button class="login-btn" onclick="checkLogin()">进入应用</button>
-  
-  <div class="login-row">
-    <span class="login-row-text">没有账号？</span>
-    <button class="glass-btn" onclick="showRegister()">去注册</button>
+<!-- 登录 -->
+<div class="wrapper">
+  <div class="glass-card" id="loginBox">
+    <div class="card-title">表白墙登录</div>
+    <div class="form-group">
+      <div class="form-label">用户名</div>
+      <input class="form-input" id="loginUser" placeholder="请输入用户名">
+    </div>
+    <div class="form-group">
+      <div class="form-label">密码</div>
+      <input class="form-input" id="loginPwd" type="password" placeholder="请输入密码">
+    </div>
+    <button class="btn-primary" onclick="login()">登录</button>
+    <div class="tip-text">没有账号？<span onclick="openReg()">去注册</span></div>
   </div>
 </div>
 
-<!-- 主页面 -->
-<div class="main" id="main">
-  <video class="video-bg" src="78.mp4" loop muted playsinline></video>
-  <div class="container">
-
-    <!-- 顶部用户信息卡片 -->
-    <div class="card">
-      <div class="card-title" onclick="toggle(this)">👤 <span id="showUserName">用户中心</span></div>
-      <div class="card-items">
-        <div style="padding:16px;">
-          <div class="tool-result" id="userInfoShow"></div>
-          <button class="tool-btn" style="margin-top:12px" onclick="logout()">退出登录</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- 游戏区 -->
-    <div class="card">
-      <div class="card-title" onclick="toggle(this)">😜安装包</div>
-      <div class="card-items">
-        <div class="card-item" onclick="openUrl('https://pvp.qq.com/')">王者荣耀</div>
-        <div class="card-item" onclick="openUrl('https://dm.qq.com/')">和平精英</div>
-        <div class="card-item" onclick="openUrl('https://jr.163.com/')">明日之后</div>
-        <div class="card-item" onclick="openUrl('https://wd.qq.com/')">王者荣耀国际版</div>
-        <div class="card-item" onclick="openUrl('https://www.kurogames.com/')">战双帕弥什</div>
-        <div class="card-item" onclick="openUrl('https://ak.hypergryph.com/')">明日方舟</div>
-        <div class="card-item" onclick="openUrl('https://baohuang.qq.com/')">火影忍者</div>
-        <div class="card-item" onclick="openUrl('https://dnf.qq.com/')">地下城与勇士</div>
-        <div class="card-item" onclick="openUrl('https://yys.163.com/')">阴阳师</div>
-        <div class="card-item" onclick="openUrl('https://cf.qq.com/')">穿越火线</div>
-        <div class="card-item" onclick="openUrl('https://www.roblox.com/')">Roblox</div>
-        <div class="card-item" onclick="openUrl('https://www.minecraft.net/')">我的世界</div>
-        <div class="card-item" onclick="openUrl('https://www.jianmu.site/')">地铁跑酷</div>
-        <div class="card-item" onclick="openUrl('https://wzry.qq.com/')">王者荣耀体验服</div>
-        <div class="card-item" onclick="openUrl('https://speed.qq.com/')">QQ飞车</div>
-      </div>
-    </div>
-
-    <!-- 音乐 -->
-    <div class="card">
-      <div class="card-title" onclick="toggle(this)">音乐🎵『和谐中』</div>
-      <div class="card-items">
-        <div style="padding:16px;">
-          <input class="tool-input" id="song" placeholder="输入歌曲名/歌手">
-          <button class="tool-btn" onclick="searchMusic()">搜索音乐</button>
-          <div class="music-result" id="musicResult"></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 工具 -->
-    <div class="card">
-      <div class="card-title" onclick="toggle(this)">工具</div>
-      <div class="card-items">
-        <div style="padding:16px;">
-          <input class="tool-input" id="ts" placeholder="时间戳/日期">
-          <button class="tool-btn" onclick="tsChange()">转换</button>
-          <div class="tool-result" id="tsResult"></div>
-          <button class="copy-btn" onclick="copyResult('tsResult')">复制</button>
-        </div>
-        <div style="padding:16px;">
-          <input class="tool-input" id="qrText" placeholder="输入内容生成二维码">
-          <button class="tool-btn" onclick="makeQr()">生成</button>
-          <div class="tool-result" id="qrResult"></div>
-          <button class="copy-btn" onclick="copyResult('qrResult')">复制</button>
-        </div>
-        <div style="padding:16px;">
-          <button class="tool-btn" onclick="getIp()">查询本机IP</button>
-          <div class="tool-result" id="ipResult"></div>
-          <button class="copy-btn" onclick="copyResult('ipResult')">复制</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- 电棍语录 -->
-    <div class="card">
-      <div class="card-title" onclick="toggle(this)">⚡ 每日必听</div>
-      <div class="card-items">
-        <div class="card-item" onclick="getQuote()">开始享受</div>
-        <div class="tool-result" id="quoteResult" style="margin:16px"></div>
-        <button class="copy-btn" onclick="copyResult('quoteResult')">复制</button>
-      </div>
-    </div>
-
-    <!-- 设备信息 -->
-    <div class="card">
-      <div class="card-title" onclick="toggle(this)">📱 设备信息</div>
-      <div class="card-items">
-        <div style="padding:16px">
-          <button class="tool-btn" onclick="getDeviceInfo()">获取设备信息</button>
-          <div class="tool-result" id="deviceInfo"></div>
-          <button class="copy-btn" onclick="copyResult('deviceInfo')">复制</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- 随机密码 -->
-    <div class="card">
-      <div class="card-title" onclick="toggle(this)">🔢 随机密码</div>
-      <div class="card-items">
-        <div style="padding:16px">
-          <button class="tool-btn" onclick="randPwd()">生成8位随机密码</button>
-          <div class="tool-result" id="randResult"></div>
-          <button class="copy-btn" onclick="copyResult('randResult')">复制</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- 天气查询 -->
-    <div class="card">
-      <div class="card-title" onclick="toggle(this)">🌤️ 天气查询</div>
-      <div class="card-items">
-        <div style="padding:16px">
-          <input class="tool-input" id="city" placeholder="城市" value="海口">
-          <button class="tool-btn" onclick="getWeather()">查询天气</button>
-          <div class="tool-result" id="weatherResult"></div>
-          <button class="copy-btn" onclick="copyResult('weatherResult')">复制</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- 计算器 -->
-    <div class="card">
-      <div class="card-title" onclick="toggle(this)">🧮 计算器</div>
-      <div class="card-items">
-        <div style="padding:16px;">
-          <input class="tool-input" id="exp" placeholder="例如 10+20*3">
-          <button class="tool-btn" onclick="calc()">计算</button>
-          <div class="tool-result" id="calcResult"></div>
-          <button class="copy-btn" onclick="copyResult('calcResult')">复制</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- 新增实用功能 -->
-    <div class="card">
-      <div class="card-title" onclick="toggle(this)">🧩 新增实用功能</div>
-      <div class="card-items">
-        <div style="padding:16px;">
-          <button class="tool-btn" onclick="getUUID()">生成UUID</button>
-          <div class="tool-result" id="uuidResult"></div>
-          <button class="copy-btn" onclick="copyResult('uuidResult')">复制</button>
-        </div>
-        <div style="padding:16px;">
-          <input class="tool-input" id="md5Text" placeholder="字符串生成MD5">
-          <button class="tool-btn" onclick="getMD5()">生成MD5</button>
-          <div class="tool-result" id="md5Result"></div>
-          <button class="copy-btn" onclick="copyResult('md5Result')">复制</button>
-        </div>
-        <div style="padding:16px;">
-          <input class="tool-input" id="base64In" placeholder="文字转Base64">
-          <button class="tool-btn" onclick="toBase64()">编码</button>
-          <button class="tool-btn" onclick="fromBase64()" style="margin-top:8px;">解码</button>
-          <div class="tool-result" id="base64Result"></div>
-          <button class="copy-btn" onclick="copyResult('base64Result')">复制</button>
-        </div>
-        <div style="padding:16px;">
-          <button class="tool-btn" onclick="getNowTime()">获取当前时间</button>
-          <div class="tool-result" id="nowTimeResult"></div>
-          <button class="copy-btn" onclick="copyResult('nowTimeResult')">复制</button>
-        </div>
-        <div style="padding:16px;">
-          <input class="tool-input" id="lenIn" placeholder="密码长度" value="16">
-          <button class="tool-btn" onclick="randPwdAny()">自定义长度密码</button>
-          <div class="tool-result" id="randAnyResult"></div>
-          <button class="copy-btn" onclick="copyResult('randAnyResult')">复制</button>
-        </div>
-        <div style="padding:16px;">
-          <input class="tool-input" id="rgbIn" placeholder="输入 #FFFFFF">
-          <button class="tool-btn" onclick="rgbToHsl()">转HSL</button>
-          <div class="tool-result" id="rgbHslResult"></div>
-          <button class="copy-btn" onclick="copyResult('rgbHslResult')">复制</button>
-        </div>
-        <div style="padding:16px;">
-          <button class="tool-btn" onclick="randomNum()">生成1-100随机数</button>
-          <div class="tool-result" id="randomNumResult"></div>
-          <button class="copy-btn" onclick="copyResult('randomNumResult')">复制</button>
-        </div>
-        <div style="padding:16px;">
-          <input class="tool-input" id="reverseTxt" placeholder="输入文字">
-          <button class="tool-btn" onclick="textReverse()">文字反转</button>
-          <div class="tool-result" id="reverseResult"></div>
-          <button class="copy-btn" onclick="copyResult('reverseResult')">复制</button>
-        </div>
-        <div style="padding:16px;">
-          <button class="tool-btn" onclick="getBattery()">获取电池信息</button>
-          <div class="tool-result" id="batteryResult"></div>
-          <button class="copy-btn" onclick="copyResult('batteryResult')">复制</button>
-        </div>
-        <div style="padding:16px;">
-          <button class="tool-btn" onclick="getNetwork()">获取网络状态</button>
-          <div class="tool-result" id="netResult"></div>
-          <button class="copy-btn" onclick="copyResult('netResult')">复制</button>
-        </div>
-        <div style="padding:16px;">
-          <input class="tool-input" id="countTxt" placeholder="输入文字">
-          <button class="tool-btn" onclick="textCount()">字数统计</button>
-          <div class="tool-result" id="countResult"></div>
-          <button class="copy-btn" onclick="copyResult('countResult')">复制</button>
-        </div>
-        <div style="padding:16px;">
-          <button class="tool-btn" onclick="getLocationInfo()">获取粗略位置</button>
-          <div class="tool-result" id="locResult"></div>
-          <button class="copy-btn" onclick="copyResult('locResult')">复制</button>
-        </div>
-        <div style="padding:16px;">
-          <input class="tool-input" id="unixtime" placeholder="毫秒时间戳">
-          <button class="tool-btn" onclick="msToDate()">毫秒转日期</button>
-          <div class="tool-result" id="msDateResult"></div>
-          <button class="copy-btn" onclick="copyResult('msDateResult')">复制</button>
-        </div>
-        <div style="padding:16px;">
-          <button class="tool-btn" onclick="openFull()">进入全屏</button>
-          <button class="tool-btn" onclick="closeFull()" style="margin-top:8px;">退出全屏</button>
-          <div class="tool-result" id="fullResult"></div>
-        </div>
-        <div style="padding:16px;">
-          <input class="tool-input" id="caseTxt" placeholder="输入英文">
-          <button class="tool-btn" onclick="toUpperCase()">转大写</button>
-          <button class="tool-btn" onclick="toLowerCase()" style="margin-top:8px;">转小写</button>
-          <div class="tool-result" id="caseResult"></div>
-          <button class="copy-btn" onclick="copyResult('caseResult')">复制</button>
-        </div>
-        <div style="padding:16px;">
-          <button class="tool-btn" onclick="clearStorage()">清空本地存储</button>
-          <div class="tool-result" id="storageResult"></div>
-        </div>
-        <div style="padding:16px;">
-          <input class="tool-input" id="urlCode" placeholder="URL编码文字">
-          <button class="tool-btn" onclick="urlEncode()">编码</button>
-          <button class="tool-btn" onclick="urlDecode()" style="margin-top:8px;">解码</button>
-          <div class="tool-result" id="urlResult"></div>
-          <button class="copy-btn" onclick="copyResult('urlResult')">复制</button>
-        </div>
-        <div style="padding:16px;">
-          <button class="tool-btn" onclick="getOsInfo()">获取系统版本</button>
-          <div class="tool-result" id="osResult"></div>
-          <button class="copy-btn" onclick="copyResult('osResult')">复制</button>
-        </div>
-        <div style="padding:16px;">
-          <input class="tool-input" id="calc2In" placeholder="数字1,数字2 求和">
-          <button class="tool-btn" onclick="calc2()">求和</button>
-          <div class="tool-result" id="calc2Result"></div>
-          <button class="copy-btn" onclick="copyResult('calc2Result')">复制</button>
-        </div>
-      </div>
-    </div>
-
+<!-- 你要的注册弹窗（缩小、上移、带取消按钮、带动画） -->
+<div id="regModal">
+  <div class="card-title">注册账号</div>
+  <img id="avatarPrev" class="avatar-preview" src="https://picsum.photos/200">
+  <input type="file" id="avatarUpload" accept="image/*" style="color:#fff;margin:10px 0">
+  <div class="form-group">
+    <div class="form-label">用户名</div>
+    <input class="form-input" id="regUser" placeholder="设置用户名">
+  </div>
+  <div class="form-group">
+    <div class="form-label">密码</div>
+    <input class="form-input" id="regPwd" type="password" placeholder="设置密码">
+  </div>
+  <div class="reg-buttons">
+    <button class="btn-reg btn-cancel" onclick="closeReg()">取消</button>
+    <button class="btn-reg btn-confirm" onclick="register()">注册</button>
   </div>
 </div>
+
+<!-- 主墙 -->
+<div class="wall" id="wallBox">
+  <div class="wall-title">💕 表白墙</div>
+  <div id="postList"></div>
+</div>
+
+<div class="fab" id="fab" onclick="openPost()">+</div>
+<div class="overlay" id="overlay"></div>
+
+<div class="popup" id="postPopup">
+  <div class="popup-title">发布表白</div>
+  <textarea class="popup-input" id="postText" placeholder="写下你的心意..."></textarea>
+  <input type="file" id="postImg" accept="image/*" style="color:#fff;margin-bottom:12px">
+  <div class="popup-btns">
+    <button class="popup-btn btn-close" onclick="closePost()">取消</button>
+    <button class="popup-btn btn-send" onclick="publishPost()">发布</button>
+  </div>
+</div>
+
+<div class="popup" id="commentPopup">
+  <div class="popup-title">发表评论</div>
+  <input class="popup-input" id="commentText" placeholder="写下评论...">
+  <input type="file" id="commentImg" accept="image/*" style="color:#fff;margin-bottom:12px">
+  <div class="popup-btns">
+    <button class="popup-btn btn-close" onclick="closeComment()">取消</button>
+    <button class="popup-btn btn-send" onclick="sendComment()">发送</button>
+  </div>
+</div>
+
+<div class="copyright">© 2026 AetherWorks All Rights Reserved</div>
 
 <script>
-// 本地存储用户账号
-let userList = JSON.parse(localStorage.getItem("userList")) || {};
-let currentLoginUser = "";
-let currentLoginPwd = "";
+let users     = JSON.parse(localStorage.getItem("users")) || {};
+let posts     = JSON.parse(localStorage.getItem("posts")) || [];
+let me        = null;
+let activeId  = null;
+let myAvatar  = "";
 
-// 复制结果通用函数
-function copyResult(id) {
-  const text = document.getElementById(id).innerText.trim();
-  if (!text) return alert("暂无内容可复制");
-  navigator.clipboard.writeText(text).then(() => {
-    alert("复制成功！");
-  }).catch(() => {
-    alert("复制失败，请手动复制");
-  });
+const toastEl = document.getElementById("toast");
+function showToast(text) {
+  toastEl.innerText = text;
+  toastEl.classList.add("show");
+  setTimeout(() => toastEl.classList.remove("show"), 1500);
 }
 
-// 显示注册
+// 头像上传
+document.getElementById("avatarUpload").onchange = function(e) {
+  const f = e.target.files[0];
+  if(!f) return;
+  const r = new FileReader();
+  r.onload = (ev) => {
+    myAvatar = ev.target.result;
+    document.getElementById("avatarPrev").src = myAvatar;
+  };
+  r.readAsDataURL(f);
+};
+
+// 注册弹窗控制
 const regModal = document.getElementById("regModal");
-function showRegister() {
+function openReg() {
   regModal.classList.add("show");
 }
-function hideRegister() {
-  regModal.classList.remove("show");
-}
-regModal.onclick = function(e){
-  if(e.target === regModal) hideRegister();
+function closeReg() {
+  regModal.classList.add("fade-out");
+  setTimeout(() => {
+    regModal.classList.remove("show", "fade-out");
+  }, 400);
 }
 
-// 注册
-function doRegister() {
-  let user = document.getElementById("regUser").value.trim();
-  let pwd = document.getElementById("regPwd").value.trim();
-  if (!user) {
-    alert("请输入用户名");
+// 注册（带反馈 + 动画消失）
+function register() {
+  const u = document.getElementById("regUser").value.trim();
+  const p = document.getElementById("regPwd").value.trim();
+
+  if (!u) {
+    showToast("请输入用户名");
     return;
   }
-  if (!/^[0-9]+$/.test(pwd)) {
-    alert("密码只能是数字");
+  if (!p) {
+    showToast("请输入密码");
     return;
   }
-  if (userList[user]) {
-    alert("用户名已存在");
+  if (users[u]) {
+    showToast("用户名已存在");
     return;
   }
-  userList[user] = pwd;
-  localStorage.setItem("userList", JSON.stringify(userList));
-  alert("注册成功！");
-  hideRegister();
-  document.getElementById("user").value = user;
-  document.getElementById("pwd").value = "";
+
+  users[u] = {
+    name: u,
+    pwd: p,
+    avatar: myAvatar || "https://picsum.photos/200"
+  };
+  localStorage.setItem("users", JSON.stringify(users));
+
+  showToast("注册成功！");
+  closeReg(); // 注册成功，带动画消失
 }
 
-// 登录验证
-function checkLogin() {
-  let u = document.getElementById("user").value.trim();
-  let p = document.getElementById("pwd").value.trim();
+// 登录
+function login() {
+  const u = document.getElementById("loginUser").value.trim();
+  const p = document.getElementById("loginPwd").value.trim();
 
-  let uLower = u.toLowerCase();
-  let pLower = p.toLowerCase();
-
-  let isDefault = (uLower === "xieyoufu" && pLower === "1110");
-  let regPwd = null;
-  for (let key in userList) {
-    if (key.toLowerCase() === uLower) {
-      regPwd = userList[key];
-      break;
-    }
+  if (!u || !p) {
+    showToast("请输入账号密码");
+    return;
   }
-  let isReg = regPwd === p;
-
-  if (isDefault || isReg) {
-    currentLoginUser = u;
-    currentLoginPwd = p;
-
-    document.getElementById("login").classList.add("hide");
-    document.getElementById("main").classList.add("show");
-
-    document.getElementById("showUserName").innerText = currentLoginUser;
-    showUserInfo();
-
-    let video = document.querySelector(".video-bg");
-    video.muted = true;
-    video.play().then(() => {
-      video.muted = false;
-      video.volume = 0.3;
-    }).catch(e => {});
-  } else {
-    showJoker();
+  if (!users[u]) {
+    showToast("用户不存在");
+    return;
   }
-}
-
-// 显示用户信息
-function showUserInfo() {
-  let pwd = currentLoginPwd + "";
-  let starPwd = pwd.length > 2 
-    ? pwd.substring(0, 1) + "####" + pwd.slice(-1) 
-    : "####";
-
-  let ua = navigator.userAgent;
-  let platform = navigator.platform || "未知";
-  let screenWH = `${screen.width} × ${screen.height}`;
-  let language = navigator.language || "未知";
-
-  let info = `用户名：${currentLoginUser}
-密码：${starPwd}
-系统：${platform}
-分辨率：${screenWH}
-语言：${language}
-UA：${ua.substring(0, 80)}...`;
-
-  document.getElementById("userInfoShow").innerText = info;
-}
-
-// 退出登录
-function logout() {
-  currentLoginUser = "";
-  currentLoginPwd = "";
-  document.getElementById("login").classList.remove("hide");
-  document.getElementById("main").classList.remove("show");
-  document.getElementById("user").value = "";
-  document.getElementById("pwd").value = "";
-}
-
-// 小丑
-const joker = document.getElementById("joker");
-function showJoker() {
-  joker.classList.add("show");
-}
-function hideJoker() {
-  joker.classList.remove("show");
-}
-joker.onclick = hideJoker;
-
-// 卡片展开
-function toggle(el) {
-  el.nextElementSibling.classList.toggle("show");
-}
-
-function openUrl(url) { window.open(url, "_blank"); }
-
-// 音乐
-async function searchMusic() {
-  const kw = document.getElementById("song").value.trim();
-  if (!kw) return;
-  try {
-    const res = await fetch(`https://api.injahow.cn/meting/api?server=netease&type=search&count=10&keywords=${encodeURIComponent(kw)}`);
-    const data = await res.json();
-    const box = document.getElementById("musicResult");
-    box.innerHTML = "";
-    data.forEach(s => {
-      let item = document.createElement("div");
-      item.className = "music-item";
-      item.innerText = s.name + " - " + s.artist;
-      item.onclick = () => new Audio(s.url).play();
-      box.appendChild(item);
-    });
-  } catch(e){ alert("音乐接口请求失败") }
-}
-
-// 时间戳
-function tsChange() {
-  const v = document.getElementById("ts").value.trim();
-  let r = /^\d+$/.test(v) ? new Date(v*1000).toLocaleString() : new Date(v).getTime()/1000;
-  document.getElementById("tsResult").innerText = r || "格式错误";
-}
-
-// 二维码
-function makeQr() {
-  const t = document.getElementById("qrText").value.trim();
-  if (!t) return;
-  document.getElementById("qrResult").innerText = "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data="+encodeURIComponent(t);
-}
-
-// IP
-async function getIp() {
-  try {
-    let res = await fetch("https://api.ip.sb/geoip");
-    let j = await res.json();
-    document.getElementById("ipResult").innerText =
-      `IP：${j.ip}\n地区：${j.country} ${j.region || ""} ${j.city || ""}\n运营商：${j.organization || "未知"}`;
-  } catch(e){
-    document.getElementById("ipResult").innerText = "获取失败，请检查网络";
+  if (users[u].pwd !== p) {
+    showToast("密码错误");
+    return;
   }
+
+  me = users[u];
+  showToast("登录成功");
+  document.querySelector(".wrapper").style.display = "none";
+  document.getElementById("wallBox").style.display = "block";
+  document.getElementById("fab").style.display = "flex";
+  renderPosts();
 }
 
-// 电棍语录
-const quotes = [
-  "不要假装努力，电棍不会陪你演戏。","菜就多练，输不起就别玩。","别找借口，菜就是菜。",
-  "嘴巴别硬，操作说话。","现实唯唯诺诺，网络重拳出击？","别在我面前刷存在感，没用。",
-  "别自我感动，没人在乎。","你那操作，跟闹着玩一样。","别抱怨环境，先看看自己。",
-  "你急了，你开始急了。","少说多做，比什么都强。","别拿你的业余，挑战别人的饭碗。",
-  "努力不一定有用，但不努力一定没用。","实力不够，脾气别太大。","你那思路，跟没睡醒一样。"
-];
-function getQuote() {
-  document.getElementById("quoteResult").innerText = quotes[Math.floor(Math.random()*quotes.length)];
+// 发布表白
+function openPost() {
+  document.getElementById("overlay").classList.add("active");
+  document.getElementById("postPopup").classList.add("active");
+}
+function closePost() {
+  document.getElementById("postPopup").classList.remove("active");
+  setTimeout(() => document.getElementById("overlay").classList.remove("active"), 300);
 }
 
-// 设备信息
-function getDeviceInfo() {
-  let ua = navigator.userAgent;
-  let sys = navigator.platform;
-  let lang = navigator.language;
-  let scr = `${screen.width}×${screen.height}`;
-  let info = `设备系统：${sys}\n屏幕分辨率：${scr}\n语言：${lang}\nUA信息：${ua}`;
-  document.getElementById("deviceInfo").innerText = info;
-}
-
-// 随机密码
-function randPwd() {
-  let s = "ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678";
-  let p = "";
-  for(let i=0;i<8;i++) p += s[Math.floor(Math.random()*s.length)];
-  document.getElementById("randResult").innerText = p;
-}
-
-// 天气
-async function getWeather() {
-  let city = document.getElementById("city").value.trim();
-  if(!city){ alert("请输入城市名"); return; }
-  try {
-    let res = await fetch(`https://api.vvhan.com/api/weather?city=${encodeURIComponent(city)}`);
-    let j = await res.json();
-    if(j.success){
-      let d = j.info;
-      document.getElementById("weatherResult").innerText = `城市：${d.city}\n天气：${d.weather}\n温度：${d.temperature}℃\n风向：${d.wind} ${d.windSpeed}`;
-    } else {
-      document.getElementById("weatherResult").innerText = "查询失败，城市名错误";
-    }
-  } catch(e){
-    document.getElementById("weatherResult").innerText = "网络异常，查询失败";
+function publishPost() {
+  if (!me) {
+    showToast("请先登录");
+    return;
   }
-}
-
-// 计算器
-function calc() {
-  try {
-    let r = eval(document.getElementById("exp").value.trim());
-    document.getElementById("calcResult").innerText = r;
-  } catch(e) {
-    document.getElementById("calcResult").innerText = "表达式错误";
+  const txt = document.getElementById("postText").value.trim();
+  if (!txt) {
+    showToast("请输入内容");
+    return;
   }
-}
 
-// 新增功能
-function getUUID(){
-  let d=Date.now();
-  let u='xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,function(c){
-    let r=(d+Math.random()*16)%16|0;d=Math.floor(d/16);
-    return(c=='x'?r:(r&0x3|0x8)).toString(16);
+  posts.unshift({
+    id: Date.now(),
+    name: me.name,
+    avatar: me.avatar,
+    text: txt,
+    comments: []
   });
-  document.getElementById("uuidResult").innerText=u;
+  localStorage.setItem("posts", JSON.stringify(posts));
+  closePost();
+  renderPosts();
+  showToast("发布成功");
 }
 
-function getMD5(){
-  let v = document.getElementById("md5Text").value;
-  document.getElementById("md5Result").innerText = v;
+// 评论
+function openComment(id) {
+  activeId = id;
+  document.getElementById("overlay").classList.add("active");
+  document.getElementById("commentPopup").classList.add("active");
+}
+function closeComment() {
+  document.getElementById("commentPopup").classList.remove("active");
+  setTimeout(() => document.getElementById("overlay").classList.remove("active"), 300);
 }
 
-function toBase64(){
-  let v=document.getElementById("base64In").value;
-  document.getElementById("base64Result").innerText=btoa(unescape(encodeURIComponent(v)));
-}
-function fromBase64(){
-  let v=document.getElementById("base64In").value;
-  document.getElementById("base64Result").innerText=decodeURIComponent(escape(atob(v)));
-}
-
-function getNowTime(){
-  document.getElementById("nowTimeResult").innerText=new Date().toLocaleString();
-}
-
-function randPwdAny(){
-  let s="ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678!@#$%^&*()_+-";
-  let l=parseInt(document.getElementById("lenIn").value)||8;
-  let p="";for(let i=0;i<l;i++)p+=s[Math.floor(Math.random()*s.length)];
-  document.getElementById("randAnyResult").innerText=p;
-}
-
-function rgbToHsl(){
-  document.getElementById("rgbHslResult").innerText="仅演示："+document.getElementById("rgbIn").value;
-}
-
-function randomNum(){
-  document.getElementById("randomNumResult").innerText=Math.floor(Math.random()*100+1);
-}
-
-function textReverse(){
-  let v=document.getElementById("reverseTxt").value;
-  document.getElementById("reverseResult").innerText=v.split('').reverse().join('');
-}
-
-async function getBattery(){
-  if(navigator.getBattery){
-    let b=await navigator.getBattery();
-    document.getElementById("batteryResult").innerText=`电量：${(b.level*100).toFixed(0)}%\n充电：${b.charging?"是":"否"}`;
-  }else{
-    document.getElementById("batteryResult").innerText="不支持电池API";
+function sendComment() {
+  if (!me) return;
+  const txt = document.getElementById("commentText").value.trim();
+  if (!txt) {
+    showToast("请输入评论");
+    return;
+  }
+  const post = posts.find(x => x.id === activeId);
+  if (post) {
+    post.comments.push({ name: me.name, text: txt });
+    localStorage.setItem("posts", JSON.stringify(posts));
+    renderPosts();
+    closeComment();
+    showToast("评论成功");
   }
 }
 
-function getNetwork(){
-  let n=navigator.connection||navigator.mozConnection||navigator.webkitConnection;
-  document.getElementById("netResult").innerText=n?`网络类型：${n.effectiveType}\n下行：${n.downlink}Mbps`:"不支持";
-}
-
-function textCount(){
-  let v=document.getElementById("countTxt").value;
-  document.getElementById("countResult").innerText=`总字数：${v.length}\n汉字：${(v.match(/[\u4e00-\u9fa5]/g)||[]).length}`;
-}
-
-function getLocationInfo(){
-  if(navigator.geolocation){
-    navigator.geolocation.getCurrentPosition(p=>{
-      document.getElementById("locResult").innerText=`纬度：${p.coords.latitude}\n经度：${p.coords.longitude}`;
-    },e=>{document.getElementById("locResult").innerText="已拒绝位置权限"});
-  }
-}
-
-function msToDate(){
-  let v=document.getElementById("unixtime").value.trim();
-  document.getElementById("msDateResult").innerText=new Date(parseInt(v)).toLocaleString()||"错误";
-}
-
-function openFull(){
-  let d=document.documentElement;
-  if(d.requestFullscreen)d.requestFullscreen();
-  document.getElementById("fullResult").innerText="已进入全屏";
-}
-function closeFull(){
-  if(document.exitFullscreen)document.exitFullscreen();
-  document.getElementById("fullResult").innerText="已退出全屏";
-}
-
-function toUpperCase(){
-  let v=document.getElementById("caseTxt").value;
-  document.getElementById("caseResult").innerText=v.toUpperCase();
-}
-function toLowerCase(){
-  let v=document.getElementById("caseTxt").value;
-  document.getElementById("caseResult").innerText=v.toLowerCase();
-}
-
-function clearStorage(){
-  localStorage.clear();sessionStorage.clear();
-  userList = {};
-  document.getElementById("storageResult").innerText="已清空本地存储";
-}
-
-function urlEncode(){
-  let v=document.getElementById("urlCode").value;
-  document.getElementById("urlResult").innerText=encodeURIComponent(v);
-}
-function urlDecode(){
-  let v=document.getElementById("urlCode").value;
-  document.getElementById("urlResult").innerText=decodeURIComponent(v);
-}
-
-function getOsInfo(){
-  let u=navigator.userAgent;let os="未知";
-  if(/Android/i.test(u))os="Android";
-  else if(/iPhone|iPad/i.test(u))os="iOS";
-  else if(/Windows NT/i.test(u))os="Windows";
-  else if(/Mac OS X/i.test(u))os="macOS";
-  document.getElementById("osResult").innerText=os+"\n"+navigator.platform;
-}
-
-function calc2(){
-  let v=document.getElementById("calc2In").value.split(",");
-  let s=0;v.forEach(i=>s+=parseFloat(i)||0);
-  document.getElementById("calc2Result").innerText=s;
+// 渲染
+function renderPosts() {
+  document.getElementById("postList").innerHTML = posts.map(p => `
+  <div class="post-card">
+    <div class="post-header">
+      <img class="post-avatar" src="${p.avatar}">
+      <div class="post-name">${p.name}</div>
+    </div>
+    <div class="post-content">${p.text}</div>
+    <div class="post-actions">
+      <div class="action-btn" onclick="openComment(${p.id})">💬 ${p.comments.length}</div>
+    </div>
+    ${p.comments.map(c => `
+      <div style="font-size:14px;color:#ccc;margin-top:6px;padding-left:10px;border-left:2px solid #ff8da1">
+        ${c.name}：${c.text}
+      </div>
+    `).join("")}
+  </div>
+  `).join("");
 }
 
 // 雪花
-const canvas = document.getElementById('snow');
-const ctx = canvas.getContext('2d');
-let w = canvas.width = window.innerWidth;
-let h = canvas.height = window.innerHeight;
+const canvas = document.getElementById("snow");
+const ctx = canvas.getContext("2d");
+let w = canvas.width = innerWidth;
+let h = canvas.height = innerHeight;
 
-let snowflakes = [];
 class Snow {
   constructor() {
-    this.x = Math.random() * w;
-    this.y = Math.random() * -h;
-    this.r = Math.random() * 1.6 + 0.7;
-    this.speed = Math.random() * 1.2 + 0.4;
-  }
-  update() {
-    this.y += this.speed;
-    if (this.y > h) {
-      this.y = -5;
-      this.x = Math.random() * w;
-    }
+    this.x = Math.random()*w;
+    this.y = Math.random()*-h;
+    this.r = Math.random()*1.5+0.5;
+    this.s = Math.random()*1+0.5;
   }
   draw() {
     ctx.beginPath();
-    ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(255,255,255,0.92)';
-    ctx.shadowColor = 'rgba(255,255,255,0.4)';
-    ctx.shadowBlur = 8;
+    ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+    ctx.fillStyle = "rgba(255,255,255,0.6)";
     ctx.fill();
-    ctx.shadowBlur = 0;
+  }
+  update() {
+    this.y += this.s;
+    if (this.y > h) this.y = -5;
   }
 }
-
-function createSnow() {
-  for (let i = 0; i < 100; i++) {
-    snowflakes.push(new Snow());
-  }
+const snows = Array.from({length:80},()=>new Snow());
+function snowLoop() {
+  ctx.clearRect(0,0,w,h);
+  snows.forEach(s => {s.update();s.draw();});
+  requestAnimationFrame(snowLoop);
 }
-function animateSnow() {
-  ctx.clearRect(0, 0, w, h);
-  snowflakes.forEach(s => {
-    s.update();
-    s.draw();
-  });
-  requestAnimationFrame(animateSnow);
-}
-createSnow();
-animateSnow();
+snowLoop();
 
 window.onresize = () => {
-  w = canvas.width = window.innerWidth;
-  h = canvas.height = window.innerHeight;
+  w = innerWidth;
+  h = innerHeight;
+  canvas.width = w;
+  canvas.height = h;
 };
 </script>
 </body>
